@@ -25,7 +25,7 @@ int cnt = 0;
 void loop() {
   eq.poll();
   int max_v = 0;
-  
+  pixels.clear();
   for(int i = 0;i < 7;i++){
     int l = eq.getLValue(i);
     int r = eq.getRValue(i);
@@ -35,17 +35,11 @@ void loop() {
       if(v > K_value*(5-j)){
         on_pixel(i+(8*j));
       }
-      else{
-        off_pixel(i+(8*j));
-      }
     }
   }
   for(int j = 0;j < 5;j++){
     if(max_v > K_value*(5-j)){
       on_pixel(7+(8*j));
-    }
-    else{
-      off_pixel(7+(8*j));
     }
   }
   K_value = constrain(max_v/5,MIN_K_value,MAX_K_value);
@@ -55,9 +49,5 @@ void loop() {
 
 void on_pixel(int index){
    pixels.setPixelColor(index, color_map[index]);
-}
-
-void off_pixel(int index){
-  pixels.setPixelColor(index, pixels.Color(0,0,0));
 }
 
