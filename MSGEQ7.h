@@ -17,11 +17,11 @@ class MSGEQ7
 	public:
 		MSGEQ7();
 		void init(int left, int right, int strobePin, int resetPin);
-
+		void init();
 		void poll();
 
 		int getLValue(int index);
-		int getRvalue(int index);
+		int getRValue(int index);
 
 	private:
 		int L_pin; // read left value
