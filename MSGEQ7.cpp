@@ -10,8 +10,8 @@ MSGEQ7::MSGEQ7()
 {
 	MSGEQ7::L_pin = A0;
 	MSGEQ7::R_pin = A1;
-	MSGEQ7::strobePin = 2;
-	MSGEQ7::resetPin = 3;
+	MSGEQ7::strobePin = 4;
+	MSGEQ7::resetPin = 5;
 }
 
 void MSGEQ7::init(int left, int right, int strobePin, int resetPin)
@@ -21,6 +21,15 @@ void MSGEQ7::init(int left, int right, int strobePin, int resetPin)
 	MSGEQ7::strobePin = strobePin;
 	MSGEQ7::resetPin = resetPin;
 
+	pinMode(MSGEQ7::L_pin, INPUT);
+	pinMode(MSGEQ7::R_pin, INPUT);
+	pinMode(MSGEQ7::strobePin, OUTPUT);
+	pinMode(MSGEQ7::resetPin, OUTPUT);
+	analogReference(DEFAULT);
+}
+
+void MSGEQ7::init()
+{
 	pinMode(MSGEQ7::L_pin, INPUT);
 	pinMode(MSGEQ7::R_pin, INPUT);
 	pinMode(MSGEQ7::strobePin, OUTPUT);
@@ -44,6 +53,7 @@ void MSGEQ7::poll()
 
  digitalWrite(MSGEQ7::resetPin, LOW);
  digitalWrite(MSGEQ7::strobePin, HIGH);
+ delay(10);
 }
 
 int MSGEQ7::getLValue(int index)
